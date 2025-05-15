@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nuevo Evento</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.title.label }} {{ form.title(size=40) }}<br><br>
+    {{ form.date.label }} {{ form.date() }}<br><br>
+    {{ form.submit() }}
+</form>
+<a href="{{ url_for('eventos') }}">← Volver</a>
+{% endblock %}

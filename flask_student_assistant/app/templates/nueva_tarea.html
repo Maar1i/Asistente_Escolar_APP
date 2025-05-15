@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nueva Tarea</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.title.label }} {{ form.title(size=40) }}<br><br>
+    {{ form.due_date.label }} {{ form.due_date() }}<br><br>
+    {{ form.submit() }}
+</form>
+<a href="{{ url_for('tareas') }}">← Volver</a>
+{% endblock %}

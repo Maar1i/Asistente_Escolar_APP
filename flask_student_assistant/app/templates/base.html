@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asistente Escolar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <nav class="sidebar">
+        <h2>Asistente Escolar</h2>
+        <ul>
+            <li><a href="{{ url_for('menu') }}"><i class="fas fa-home"></i> Menú</a></li>
+            <li><a href="{{ url_for('tareas') }}"><i class="fas fa-tasks"></i> Tareas</a></li>
+            <li><a href="{{ url_for('eventos') }}"><i class="fas fa-calendar-alt"></i> Eventos</a></li>
+            <li><a href="{{ url_for('notas') }}"><i class="fas fa-sticky-note"></i> Notas</a></li>
+            <li><a href="{{ url_for('estadisticas') }}"><i class="fas fa-chart-line"></i> Estadísticas</a></li>
+            <li><a href="{{ url_for('notificaciones') }}"><i class="fas fa-bell"></i> Notificaciones</a></li>
+            <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+            <li><a href="{{ url_for('buscador') }}"><i class="fas fa-search"></i> Buscador IA</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenido">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="flash">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>
+

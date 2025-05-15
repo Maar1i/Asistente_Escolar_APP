@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Notificaciones Programadas</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.message.label }}<br>
+    {{ form.message(size=50) }}<br><br>
+    {{ form.notify_at.label }}<br>
+    {{ form.notify_at() }}<br><br>
+    {{ form.submit() }}
+</form>
+
+<hr>
+
+<h3>Notificaciones próximas</h3>
+<ul class="lista-tareas">
+    {% for n in notificaciones %}
+        <li class="tarea pendiente">
+            {{ n.message }} - {{ n.notify_at.strftime('%d/%m/%Y %H:%M') }}
+            <a href="{{ url_for('eliminar_notificacion', id=n.id) }}" title="Eliminar">🗑</a>
+        </li>
+    {% else %}
+        <li>No hay notificaciones próximas.</li>
+    {% endfor %}
+</ul>
+
+<a class="btn" href="{{ url_for('menu') }}">← Volver al Menú</a>
+{% endblock %}

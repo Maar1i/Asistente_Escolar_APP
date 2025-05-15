@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Tareas y Pendientes</h2>
+<a class="btn" href="{{ url_for('nueva_tarea') }}">+ Nueva Tarea</a>
+<ul class="lista-tareas">
+    {% for tarea in tareas %}
+        <li class="tarea {{ 'completada' if tarea.completed else 'pendiente' }}">
+            <strong>{{ tarea.title }}</strong> - {{ tarea.due_date.strftime('%d/%m/%Y') }}
+            <span class="acciones">
+                <a href="{{ url_for('completar_tarea', id=tarea.id) }}" title="Marcar/Desmarcar">✔</a>
+                <a href="{{ url_for('eliminar_tarea', id=tarea.id) }}" title="Eliminar">🗑</a>
+            </span>
+        </li>
+    {% else %}
+        <li>No tienes tareas pendientes.</li>
+    {% endfor %}
+</ul>
+<a class="btn" href="{{ url_for('menu') }}">← Volver al Menú</a>
+{% endblock %}

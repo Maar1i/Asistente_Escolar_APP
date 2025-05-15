@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nueva Nota</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.content.label }}<br>
+    {{ form.content(size=60) }}<br><br>
+    {{ form.tag.label }}<br>
+    {{ form.tag(size=40) }}<br><br>
+    {{ form.submit() }}
+</form>
+<a href="{{ url_for('notas') }}">← Volver</a>
+{% endblock %}

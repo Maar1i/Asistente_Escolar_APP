@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Eventos Escolares</h2>
+<a class="btn" href="{{ url_for('nuevo_evento') }}">+ Nuevo Evento</a>
+<ul class="lista-tareas">
+    {% for evento in eventos %}
+        <li class="tarea pendiente">
+            <strong>{{ evento.title }}</strong> - {{ evento.date.strftime('%d/%m/%Y') }}
+            <a href="{{ url_for('eliminar_evento', id=evento.id) }}" title="Eliminar">🗑</a>
+        </li>
+    {% else %}
+        <li>No tienes eventos registrados.</li>
+    {% endfor %}
+</ul>
+<a class="btn" href="{{ url_for('menu') }}">← Volver al Menú</a>
+{% endblock %}

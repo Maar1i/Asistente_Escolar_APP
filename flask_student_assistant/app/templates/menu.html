@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Bienvenido, {{ current_user.username }}!</h2>
+  <ul>
+    <li><a href="#">Tareas</a></li>
+    <li><a href="#">Eventos</a></li>
+    <li><a href="#">Notas</a></li>
+    <li><a href="#">Estadísticas</a></li>
+    <li><a href="#">Notificaciones</a></li>
+    <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+    <li><a href="{{ url_for('asistente') }}">Asistente IA</a></li>
+  </ul>
+{% endblock %}

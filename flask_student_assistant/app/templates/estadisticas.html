@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Estadísticas Académicas</h2>
+
+<h3>Agregar Calificación</h3>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.subject.label }}<br>
+    {{ form.subject(size=40) }}<br><br>
+    {{ form.score.label }}<br>
+    {{ form.score(size=10) }}<br><br>
+    {{ form.submit() }}
+</form>
+
+<hr>
+
+<h3>Promedio General</h3>
+<p>{{ promedio_general | round(2) if promedio_general else 'Sin datos aún' }}</p>
+
+<h3>Promedio por Materia</h3>
+<ul>
+    {% for materia, promedio in promedio_por_materia %}
+        <li><strong>{{ materia }}:</strong> {{ promedio | round(2) }}</li>
+    {% else %}
+        <li>Sin materias registradas.</li>
+    {% endfor %}
+</ul>
+
+<h3>Historial de Calificaciones</h3>
+<ul class="lista-tareas">
+    {% for nota in calificaciones %}
+        <li class="tarea pendiente">
+            <strong>{{ nota.subject }}</strong> - {{ nota.score }}
+        </li>
+    {% else %}
+        <li>No hay calificaciones registradas.</li>
+    {% endfor %}
+</ul>
+
+<a class="btn" href="{{ url_for('menu') }}">← Volver al Menú</a>
+{% endblock %}

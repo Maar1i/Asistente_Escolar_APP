@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Buscador Inteligente 🤖</h2>
+<form method="POST">
+    <label for="pregunta">Escribe tu pregunta:</label><br>
+    <input type="text" name="pregunta" size="60" required>
+    <button class="btn" type="submit">Buscar</button>
+</form>
+
+{% if respuesta %}
+    <hr>
+    <h3>Respuesta:</h3>
+    <p>{{ respuesta }}</p>
+{% endif %}
+
+<a class="btn" href="{{ url_for('menu') }}">← Volver al Menú</a>
+{% endblock %}
